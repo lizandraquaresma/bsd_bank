@@ -12,13 +12,9 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: SafeArea(
-        child: Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          constraints: const BoxConstraints(maxWidth: 360),
-          child: const LoginForm(),
-        ),
+      body: const Padding(
+        padding: EdgeInsets.all(16),
+        child: LoginForm(),
       ),
     );
   }

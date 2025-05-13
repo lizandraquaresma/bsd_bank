@@ -5,12 +5,14 @@ import '../models/login_dto.dart';
 import '../views/forgot_password_page.dart';
 import '../views/register_page.dart';
 import 'login_button.dart';
+import 'password_field.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final texts = Theme.of(context).textTheme;
     const key = 'login_form';
 
     return Form(
@@ -19,26 +21,22 @@ class LoginForm extends StatelessWidget {
         spacing: 8,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text('Login Page'),
-          TextFormField(
-            key: const Key('email'),
-            validator: Validator().required().email(),
-            decoration: const InputDecoration(
-              labelText: 'E-mail',
-              suffixIcon: Icon(Icons.mail),
+          Text(
+            'Bem-vindo de volta!',
+            style: texts.titleLarge?.copyWith(
+              fontWeight: FontWeight.bold,
             ),
           ),
           TextFormField(
-            key: const Key('password'),
-            validator: Validator()
-                .required()
-                .hasNumeric('Deve conter números')
-                .minLength(6, 'Mínimo de 6 caracteres'),
+            key: const Key('cpf'),
+            validator: Validator().required().cpf(),
+            keyboardType: TextInputType.number,
             decoration: const InputDecoration(
-              labelText: 'Senha',
-              suffixIcon: Icon(Icons.lock),
+              labelText: 'CPF',
+              suffixIcon: Icon(Icons.person),
             ),
           ),
+          const PasswordField(),
           Align(
             alignment: Alignment.topRight,
             child: TextButton(
@@ -49,11 +47,11 @@ class LoginForm extends StatelessWidget {
           LoginButton(
             getDto: () {
               final map = context.submit(key: key);
-
+      
               return LoginDto.fromMap(map);
             },
           ),
-          OutlinedButton(
+          TextButton(
             onPressed: () => RegisterPage.go(context),
             child: const Text('Cadastrar-se'),
           ),

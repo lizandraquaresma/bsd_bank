@@ -7,11 +7,11 @@ import 'package:flutter/foundation.dart';
 @immutable
 class LoginDto {
   const LoginDto({
-    this.email = '',
+    this.cpf = '',
     this.password = '',
   });
 
-  final String email;
+  final String cpf;
   final String password;
 
   LoginDto copyWith({
@@ -19,14 +19,14 @@ class LoginDto {
     String? password,
   }) {
     return LoginDto(
-      email: email ?? this.email,
+      cpf: email ?? this.cpf,
       password: password ?? this.password,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'email': email,
+      'email': cpf,
       'password': password,
     };
   }
@@ -36,7 +36,7 @@ class LoginDto {
         ? map[k] as T
         : throw ArgumentError.value(map[k], k, '$T ← ${map[k].runtimeType}');
     return LoginDto(
-      email: cast<String>('email'),
+      cpf: cast<String>('email'),
       password: cast<String>('password'),
     );
   }
@@ -47,17 +47,17 @@ class LoginDto {
       LoginDto.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'LoginDto(email: $email, password: $password)';
+  String toString() => 'LoginDto(email: $cpf, password: $password)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
     return other is LoginDto &&
-        other.email == email &&
+        other.cpf == cpf &&
         other.password == password;
   }
 
   @override
-  int get hashCode => email.hashCode ^ password.hashCode;
+  int get hashCode => cpf.hashCode ^ password.hashCode;
 }

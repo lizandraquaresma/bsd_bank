@@ -34,12 +34,16 @@ extension on ColorScheme {
         surfaceTintColor: Colors.red,
       ),
       inputDecorationTheme: const InputDecorationTheme(
+        constraints: BoxConstraints(
+          minHeight: 50,
+        ),
         isDense: true,
-        constraints: BoxConstraints(maxWidth: 600),
       ),
 
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
+          backgroundColor: primary,
+          foregroundColor: onPrimary,
           minimumSize: const Size(double.infinity, 50),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),

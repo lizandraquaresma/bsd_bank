@@ -12,7 +12,7 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FilledButton(
+    return ElevatedButton(
       onPressed: () async {
         final dto = getDto();
         await context.read<AuthStore>().login(dto);

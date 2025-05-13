@@ -1,4 +1,4 @@
-package com.example.branvier_template
+package com.example.bsd_bank
 
 import io.flutter.embedding.android.FlutterActivity
 

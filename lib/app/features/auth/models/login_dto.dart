@@ -15,28 +15,26 @@ class LoginDto {
   final String password;
 
   LoginDto copyWith({
-    String? email,
+    String? cpf,
     String? password,
   }) {
     return LoginDto(
-      cpf: email ?? this.cpf,
+      cpf: cpf ?? this.cpf,
       password: password ?? this.password,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'email': cpf,
+      'cpf': cpf,
       'password': password,
     };
   }
 
   factory LoginDto.fromMap(Map<String, dynamic> map) {
-    T cast<T>(String k) => map[k] is T
-        ? map[k] as T
-        : throw ArgumentError.value(map[k], k, '$T ← ${map[k].runtimeType}');
+     T cast<T>(String k) => map[k] is T ? map[k] as T : throw ArgumentError.value(map[k], k, '$T ← ${map[k].runtimeType}');
     return LoginDto(
-      cpf: cast<String>('email'),
+      cpf: cast<String>('cpf'),
       password: cast<String>('password'),
     );
   }
@@ -47,7 +45,8 @@ class LoginDto {
       LoginDto.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'LoginDto(email: $cpf, password: $password)';
+  String toString() =>
+   'LoginDto(cpf: $cpf, password: $password)';
 
   @override
   bool operator ==(Object other) {

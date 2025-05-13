@@ -37,6 +37,15 @@ extension on ColorScheme {
         isDense: true,
         constraints: BoxConstraints(maxWidth: 600),
       ),
+
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size(double.infinity, 50),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -8,11 +8,17 @@ import 'package:flutter/material.dart';
 extension AppColors on ColorScheme {
   static ColorScheme get light => ColorScheme.fromSeed(
         dynamicSchemeVariant: DynamicSchemeVariant.vibrant,
-        seedColor: Colors.yellow,
+        seedColor: Colors.blue,
+        primary: Colors.blue,
+        surface: Colors.white,
+        onSurface: Colors.black,
       );
   static ColorScheme get dark => ColorScheme.fromSeed(
         dynamicSchemeVariant: DynamicSchemeVariant.vibrant,
         brightness: Brightness.dark,
-        seedColor: Colors.yellow,
+        primary: Colors.blue,
+        seedColor: Colors.blue,
+        surface: Colors.black,
+        onSurface: Colors.white,
       );
 }

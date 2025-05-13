@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provide_it/provide_it.dart';
 
 import '../view_models/auth_store.dart';
-import '../views/login_page.dart';
+import '../views/initial_page.dart';
 
 class LogoutButton extends StatelessWidget {
   const LogoutButton({super.key});
@@ -13,7 +13,7 @@ class LogoutButton extends StatelessWidget {
       icon: const Icon(Icons.logout),
       onPressed: () {
         context.read<AuthStore>().logout();
-        LoginPage.go(context);
+        InitialPage.go(context);
       },
     );
   }

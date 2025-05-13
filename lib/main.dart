@@ -18,7 +18,7 @@ import 'app/services/cache/cache_service_fake.dart';
 import 'app/services/cache/cache_service_impl.dart';
 import 'env.dart';
 
-void main() => run(Env.production);
+void main() => run(Env.development);
 
 /// Inicializa o app com o ambiente [env].
 ///

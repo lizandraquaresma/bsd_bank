@@ -3,7 +3,6 @@ import 'package:tr_extension/tr_extension.dart';
 
 import '../env.dart';
 import 'app_router.dart';
-import 'app_setup.dart';
 import 'shared/constants/app_theme.dart';
 
 class App extends StatelessWidget {
@@ -23,7 +22,7 @@ class App extends StatelessWidget {
       ],
 
       // Theme
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
 
@@ -32,6 +31,9 @@ class App extends StatelessWidget {
 
       // Overlays
       builder: (_, child) => AppBuilder(builder ?? (_) => child!),
+
+      // Add this to enable ScaffoldMessenger
+      scaffoldMessengerKey: GlobalKey<ScaffoldMessengerState>(),
     );
   }
 }
@@ -47,16 +49,7 @@ class AppBuilder extends StatelessWidget {
         data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
         child: GestureDetector(
           onTap: () => FocusScope.of(context).focusedChild?.unfocus(),
-          child: Stack(
-            alignment: Alignment.bottomLeft,
-            children: [
-              builder(context),
-              Text(
-                AppSetup.version,
-                style: const TextStyle(fontSize: 10, color: Colors.grey),
-              ),
-            ],
-          ),
+          child: builder(context),
         ),
       ),
     );

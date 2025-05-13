@@ -12,7 +12,12 @@
     "API.LOGIN.SUCESS": "Usuário logado com sucesso!",
     "API.LOGIN.USER_NOT_FOUND": "Usuário não encontrado.",
     "API.LOGIN.USER_UNAUTHORIZED": "E-mail ou senha inválida.",
-
     "FORM.INVALID": "Verifique e preencha os campos",
-    "FORM.INVALID.BIRTH_DATE": "Verifique a data informada"
+    "FORM.INVALID.BIRTH_DATE": "Verifique a data informada",
+    "initial.page.title": "Bem-vindo à BSD Bank",
+    "initial.page.subtitle": "Seu banco digital, do seu jeito!",
+    "initial.page.description": "Acesse sua conta em segundos, envie PIX, acompanhe seus gastos e tenha controle total do seu dinheiro com a segurança que você merece.",
+    "initial.page.button": "Acesse sua conta",
+    "initial.page.button.create": "Criar conta",
+    "initial.page.button.login": "Entrar"
 }

@@ -1,5 +1,5 @@
-name: branvier_template
-description: A new Branvier project.
+name: bsd_bank
+description: BSD Bank project.
 version: 1.0.0
 
 environment:
@@ -12,6 +12,7 @@ dependencies:
   
   #Core
   provide_it: ^0.14.0
+  gap: ^3.0.1
   go_router: ^14.8.1
 
   #Http
@@ -27,9 +28,13 @@ dependencies:
   flutter_animate: ^4.5.2
   flutter_async: ^0.13.0
   formx: ^0.33.1
+  flutter_native_splash: ^2.4.6
 
   #Utils
   package_info_plus: ^8.2.0
+
+  
+
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +53,15 @@ flutter:
 scripts:
   test: flutter run -d chrome --wasm
   build: flutter build web --wasm --dart-define-from-file=lib/env.json
+
+flutter_native_splash:
+  color: "#ffffff"  # Cor de fundo da splash
+  image: assets/images/b_logo.png  # Imagem da splash
+  android: true  
+  ios: true  
+  fullscreen: true  # Tela cheia
+  color_dark: "#000000"  # Cor de fundo no modo escuro (opcional)
+  image_dark: assets/images/b_logo.png  # Imagem para modo escuro (opcional)
 
 # For adding firebase https://firebase.flutter.dev/docs/overview, run:
 # > dart pub add firebase_core, firebase_auth, cloud_firestore, cloud_functions, firebase_storage, firebase_analytics, firebase_crashlytics, firebase_messaging

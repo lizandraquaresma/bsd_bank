@@ -4,46 +4,69 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+// "name": "João Silva",
+//   "cpf": "12345678900",
+//   "bankNumber": 1,
+//   "agencyNumber": 1234,
+//   "accountNumber": "123456-7",
+//   "correlationId": "550e8400-e29b-41d4-a716-446655440000"
+
 @immutable
 class UserModel {
   const UserModel({
-    this.id = '',
     this.name = '',
-    this.email = '',
+    this.cpf = '',
+    this.bankNumber = 0,
+    this.agencyNumber = 0,
+    this.accountNumber = '',
+    this.correlationId = '',
   });
 
-  final String id;
   final String name;
-  final String email;
+  final String cpf;
+  final int bankNumber;
+  final int agencyNumber;
+  final String accountNumber;
+  final String correlationId;
 
   UserModel copyWith({
-    String? id,
     String? name,
-    String? email,
+    String? cpf,
+    int? bankNumber,
+    int? agencyNumber,
+    String? accountNumber,
+    String? correlationId,
   }) {
     return UserModel(
-      id: id ?? this.id,
       name: name ?? this.name,
-      email: email ?? this.email,
+      cpf: cpf ?? this.cpf,
+      bankNumber: bankNumber ?? this.bankNumber,
+      agencyNumber: agencyNumber ?? this.agencyNumber,
+      accountNumber: accountNumber ?? this.accountNumber,
+      correlationId: correlationId ?? this.correlationId,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'name': name,
-      'email': email,
+      'cpf': cpf,
+      'bankNumber': bankNumber,
+      'agencyNumber': agencyNumber,
+      'accountNumber': accountNumber,
+      'correlationId': correlationId,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
-    T cast<T>(String k) => map[k] is T
-        ? map[k] as T
-        : throw ArgumentError.value(map[k], k, '$T ← ${map[k].runtimeType}');
+     T cast<T>(String k) => map[k] is T ? map[k] as T : throw ArgumentError.value(map[k], k, '$T ← ${map[k].runtimeType}');
     return UserModel(
-      id: cast<String>('id'),
       name: cast<String>('name'),
-      email: cast<String>('email'),
+      cpf: cast<String>('cpf'),
+      bankNumber: cast<num>('bankNumber').toInt(),
+      agencyNumber: cast<num>('agencyNumber').toInt(),
+      accountNumber: cast<String>('accountNumber'),
+      correlationId: cast<String>('correlationId'),
     );
   }
 
@@ -53,18 +76,30 @@ class UserModel {
       UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'User(id: $id, name: $name, email: $email)';
+  String toString() {
+    return 'UserModel(name: $name, cpf: $cpf, bankNumber: $bankNumber, agencyNumber: $agencyNumber, accountNumber: $accountNumber, correlationId: $correlationId)';
+  }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
+  
     return other is UserModel &&
-        other.id == id &&
-        other.name == name &&
-        other.email == email;
+      other.name == name &&
+      other.cpf == cpf &&
+      other.bankNumber == bankNumber &&
+      other.agencyNumber == agencyNumber &&
+      other.accountNumber == accountNumber &&
+      other.correlationId == correlationId;
   }
 
   @override
-  int get hashCode => id.hashCode ^ name.hashCode ^ email.hashCode;
+  int get hashCode {
+    return name.hashCode ^
+      cpf.hashCode ^
+      bankNumber.hashCode ^
+      agencyNumber.hashCode ^
+      accountNumber.hashCode ^
+      correlationId.hashCode;
+  }
 }

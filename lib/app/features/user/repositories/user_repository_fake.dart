@@ -3,9 +3,12 @@ import 'user_repository.dart';
 
 class UserRepositoryFake implements UserRepository {
   var _user = const UserModel(
-    id: '42',
+    correlationId: '42',
     name: 'Abraão Vieira',
-    email: 'test@user.com',
+    cpf: '12345678900',
+    bankNumber: 1,
+    agencyNumber: 1234,
+    accountNumber: '123456-7',
   );
 
   @override

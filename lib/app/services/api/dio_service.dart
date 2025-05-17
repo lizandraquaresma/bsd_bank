@@ -9,8 +9,10 @@ import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:provide_it/provide_it.dart';
 
 import '../../../env.dart';
+import '../../features/auth/repositories/auth_repository.dart';
 import 'api_exception.dart';
 
 class DioService extends DioMixin {
@@ -19,7 +21,14 @@ class DioService extends DioMixin {
     httpClientAdapter = HttpClientAdapter();
     interceptors.addAll([
       PrettyDioLogger(),
-      InterceptorsWrapper(onError: (e, h) => h.next(ApiException.from(e))),
+      InterceptorsWrapper(
+        onError: (e, h) async {
+          if (e.response?.statusCode == 401) {
+            await readIt<AuthRepository>().logout();
+          }
+          h.next(ApiException.from(e));
+        },
+      ),
     ]);
   }
 

@@ -24,4 +24,4 @@ enum Env {
 }
 
 /// Staging API URL.
-const _sUrl = 'https://api-???.branvierapps.com';
+const _sUrl = 'https://localhost:7294';

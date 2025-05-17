@@ -11,7 +11,7 @@ dependencies:
     sdk: flutter
   
   #Core
-  provide_it: ^0.14.0
+  provide_it: ^0.18.5
   gap: ^3.0.1
   go_router: ^14.8.1
 
@@ -25,6 +25,7 @@ dependencies:
   shared_preferences: ^2.5.1
 
   #Ui
+  fl_chart: ^1.0.0
   flutter_animate: ^4.5.2
   flutter_async: ^0.13.0
   formx: ^0.33.1

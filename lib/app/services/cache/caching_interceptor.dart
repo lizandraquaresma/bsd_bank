@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 
 import 'cache_service.dart';
 
-// TODO(Art): working in progress
 class CachingInterceptor extends Interceptor {
   CachingInterceptor(
     CacheService cache, {

@@ -5,6 +5,9 @@ import 'package:provide_it/provide_it.dart';
 
 import 'app/app.dart';
 import 'app/app_setup.dart';
+import 'app/features/account/repositories/account_repository.dart';
+import 'app/features/account/repositories/account_repository_fake.dart';
+import 'app/features/account/repositories/account_repository_impl.dart';
 import 'app/features/auth/repositories/auth_repository.dart';
 import 'app/features/auth/repositories/auth_repository_fake.dart';
 import 'app/features/auth/repositories/auth_repository_impl.dart';
@@ -45,6 +48,7 @@ extension on BuildContext {
     provide(AppSetup.init);
     provide<AuthRepository>(AuthRepositoryFake.new);
     provide<UserRepository>(UserRepositoryFake.new);
+    provide<AccountRepository>(AccountRepositoryFake.new);
     provideStores();
   }
 
@@ -56,6 +60,7 @@ extension on BuildContext {
     );
     provide<AuthRepository>(AuthRepositoryImpl.new);
     provide<UserRepository>(UserRepositoryImpl.new);
+    provide<AccountRepository>(AccountRepositoryImpl.new);
     provideStores();
   }
 

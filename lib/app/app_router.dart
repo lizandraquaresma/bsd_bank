@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:provide_it/provide_it.dart';
 
 import 'app_analytics.dart';
+import 'features/account/view_models/account_view_model.dart';
+import 'features/account/views/transaction_view.dart';
 import 'features/auth/view_models/auth_store.dart';
 import 'features/auth/views/forgot_password_page.dart';
 import 'features/auth/views/initial_page.dart';
@@ -20,7 +22,8 @@ extension AppRouter on GoRouter {
         /// Caso o usuário esteja logado, será redirecionado para a rota '/home'.
         path: '/',
         redirect: (context, __) async {
-          final isLogged = await context.read<AuthStore>().check();
+          final authStore = context.read<AuthStore>();
+          final isLogged = await authStore.check();
 
           return isLogged ? '/home' : null;
         },
@@ -50,7 +53,6 @@ extension AppRouter on GoRouter {
         /// O [UserShell] envolve todas as telas filhas, adicionando elementos
         /// como barra de navegação ou menu lateral. Ficarão sempre visíveis.
         builder: (context, __, child) {
-          /// Adicione providers acessíveis apenas para as rotas filhas.
           context.provide(UserViewModel.new);
 
           return UserShell(child: child);
@@ -59,8 +61,21 @@ extension AppRouter on GoRouter {
           GoRoute(
             path: '/home',
             name: HomePage.name,
-            builder: (_, __) => const HomePage(),
+            builder: (context, __) {
+              final user = readIt<UserViewModel>().user;
+              context.provide(
+                AccountViewModel.new,
+                parameters: {
+                  'bank': user.bankNumber,
+                  'agency': user.agencyNumber,
+                  'account': user.accountNumber,
+                },
+              );
+
+              return const HomePage();
+            },
           ),
+         
         ],
       ),
     ],
@@ -97,9 +112,10 @@ extension AppRouterExtension on BuildContext {
   RouteMatchList get route => GoRouter.of(this).current;
 
   /// Id do usuário logado.
-  String? get userId => read<UserViewModel?>()?.user.id;
+  String? get userId => read<UserViewModel?>()?.user.correlationId;
+  // int? get agency => read<UserViewModel?>()?.user.agencyNumber;
+  // String? get account => read<UserViewModel?>()?.user.accountNumber;
+  // int? get bank => read<UserViewModel?>()?.user.bankNumber;
 
-  // Adicione aqui ids de outras rotas/entitidades:
-  //
   String? get exampleId => route.pathParameters['exampleId'];
 }

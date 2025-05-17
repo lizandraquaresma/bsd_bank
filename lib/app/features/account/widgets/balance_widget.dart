@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../mocks/account_balance_mock.dart';
+import '../mocks/balance_mock.dart';
 import '../models/balance_model.dart';
 
 class AccountBalanceWidget extends StatefulWidget {
@@ -71,7 +71,6 @@ class _AccountBalanceWidgetState extends State<AccountBalanceWidget> {
           child: LineChart(
             LineChartData(
               gridData: FlGridData(
-                drawVerticalLine: true,
                 horizontalInterval: 200,
                 getDrawingHorizontalLine: (value) {
                   return FlLine(

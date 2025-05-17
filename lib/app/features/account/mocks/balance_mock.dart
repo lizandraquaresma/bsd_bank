@@ -7,7 +7,7 @@ List<BalanceModel> accountBalanceMock = [
     cpf: '1234567890',
     balance: 800,
     formattedBalance: '800,00',
-    lastUpdate: DateTime(2001, 11, 1),
+    lastUpdate: DateTime(2001, 11),
     correlationId: '1234567890',
   ),
   BalanceModel(
@@ -16,7 +16,7 @@ List<BalanceModel> accountBalanceMock = [
     cpf: '1234567890',
     balance: 1000,
     formattedBalance: '900,00',
-    lastUpdate: DateTime(2001, 12, 1),
+    lastUpdate: DateTime(2001, 12),
     correlationId: '1234567890',
   ),
   BalanceModel(
@@ -25,7 +25,7 @@ List<BalanceModel> accountBalanceMock = [
     cpf: '1234567890',
     balance: 1000,
     formattedBalance: '1000,00',
-    lastUpdate: DateTime(2002, 1, 1),
+    lastUpdate: DateTime(2002, 1),
     correlationId: '1234567890',
   ),
   BalanceModel(
@@ -34,7 +34,7 @@ List<BalanceModel> accountBalanceMock = [
     cpf: '1234567890',
     balance: 800,
     formattedBalance: '200,00',
-    lastUpdate: DateTime(2002, 2, 1),
+    lastUpdate: DateTime(2002, 2),
   ),
   BalanceModel(
     agencyNumber: 1,
@@ -42,7 +42,7 @@ List<BalanceModel> accountBalanceMock = [
     cpf: '1234567890',
     balance: 600,
     formattedBalance: '400,00',
-    lastUpdate: DateTime(2002, 3, 1),
+    lastUpdate: DateTime(2002, 3),
     correlationId: '1234567890',
   ),
   BalanceModel(
@@ -51,7 +51,7 @@ List<BalanceModel> accountBalanceMock = [
     cpf: '1234567890',
     balance: 500,
     formattedBalance: '600,00',
-    lastUpdate: DateTime(2002, 4, 1),
+    lastUpdate: DateTime(2002, 4),
     correlationId: '1234567890',
   ),
   BalanceModel(
@@ -60,7 +60,7 @@ List<BalanceModel> accountBalanceMock = [
     cpf: '1234567890',
     balance: 600,
     formattedBalance: '800,00',
-    lastUpdate: DateTime(2002, 5, 1),
+    lastUpdate: DateTime(2002, 5),
     correlationId: '1234567890',
   ),
   BalanceModel(
@@ -69,7 +69,7 @@ List<BalanceModel> accountBalanceMock = [
     cpf: '1234567890',
     balance: 1000,
     formattedBalance: '1200,00',
-    lastUpdate: DateTime(2002, 6, 1),
+    lastUpdate: DateTime(2002, 6),
     correlationId: '1234567890',
-  )
+  ),
 ];

@@ -75,7 +75,11 @@ extension AppRouter on GoRouter {
               return const HomePage();
             },
           ),
-         
+          GoRoute(
+            path: '/transaction',
+            name: TransactionView.name,
+            builder: (_, __) => const TransactionView(),
+          ),
         ],
       ),
     ],

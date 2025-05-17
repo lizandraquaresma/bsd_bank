@@ -1,5 +1,6 @@
 import 'package:provide_it/provide_it.dart';
 
+import '../../user/models/user_model.dart';
 import '../models/login_dto.dart';
 import '../models/register_dto.dart';
 
@@ -11,7 +12,7 @@ abstract class AuthRepository {
   Future<bool> check();
 
   /// O método [login] realiza o login do usuário.
-  Future<void> login(LoginDto dto);
+  Future<UserModel> login(LoginDto dto);
 
   /// O método [register] realiza o cadastro do usuário.
   Future<void> register(RegisterDto dto);
@@ -20,4 +21,4 @@ abstract class AuthRepository {
   Future<void> logout();
 }
 
-final tokenRef = ProvideRef((String patientId) => 'token');
+final tokenRef = ProvideRef((String userId) => 'token');

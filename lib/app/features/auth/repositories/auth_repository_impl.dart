@@ -1,11 +1,23 @@
+
+import '../../../services/api/dio_service.dart';
+import '../../../services/cache/cache_service.dart';
+import '../../user/models/user_model.dart';
 import '../models/login_dto.dart';
 import '../models/register_dto.dart';
 import 'auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
+  AuthRepositoryImpl({required this.dio, required this.cache});
+
+  final DioService dio;
+  final CacheService cache;
+
   @override
-  // TODO: implement isLogged
-  bool get isLogged => throw UnimplementedError();
+  bool get isLogged {
+    dio.token = cache.get('token');
+
+    return dio.token != null;
+  }
 
   @override
   Future<bool> check() {
@@ -14,8 +26,9 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> login(LoginDto dto) {
-    // TODO: implement login
+  Future<UserModel> login(LoginDto dto) async {
+    const path = '/api/auth/login';
+
     throw UnimplementedError();
   }
 

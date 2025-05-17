@@ -1,3 +1,4 @@
+import '../../user/models/user_model.dart';
 import '../models/login_dto.dart';
 import '../models/register_dto.dart';
 import 'auth_repository.dart';
@@ -12,8 +13,15 @@ class AuthRepositoryFake implements AuthRepository {
   Future<bool> check() async => _logged;
 
   @override
-  Future<void> login(LoginDto dto) async {
+  Future<UserModel> login(LoginDto dto) async {
     _logged = true;
+
+    return const UserModel(
+      name: 'Test User',
+      bankNumber: 123456,
+      agencyNumber: 654321,
+      accountNumber: '111222333',
+    );
   }
 
   @override

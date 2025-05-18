@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provide_it/provide_it.dart';
 
 import '../../account/views/statement_view.dart';
@@ -22,10 +23,15 @@ class _UserShellState extends State<UserShell> {
     final user = context.watch<UserViewModel>().user;
     final texts = Theme.of(context).textTheme;
     final colors = Theme.of(context).colorScheme;
+    final route = GoRouter.of(context);
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: colors.surface,
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.notifications_rounded),
+        ),
         actions: [
           InkWell(
             onTap: () {
@@ -38,8 +44,13 @@ class _UserShellState extends State<UserShell> {
               child: Row(
                 spacing: 8,
                 mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(user.name),
+                  Text(
+                    user.name,
+                    style: texts.titleMedium
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
                   CircleAvatar(
                     radius: 24,
                     child: Image.network(

@@ -3,10 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:provide_it/provide_it.dart';
 
 import '../../account/view_models/account_view_model.dart';
+import '../../account/views/statement_view.dart';
 import '../../account/widgets/balance_widget.dart';
 import '../../account/widgets/statement_container.dart';
 import '../../account/widgets/statement_table.dart';
-import '../../account/views/statement_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -58,7 +58,11 @@ class HomePage extends StatelessWidget {
               spacing: 8,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Saldo:'),
+                Text(
+                  'Saldo:',
+                  style:
+                      texts.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                ),
                 AccountBalanceWidget(balance: balance),
               ],
             ),
@@ -88,9 +92,10 @@ class HomePage extends StatelessWidget {
                 style: TextButton.styleFrom(padding: EdgeInsets.zero),
                 child: Row(
                   children: [
-                    Text('Ver todos',
-                        style:
-                            texts.bodySmall?.copyWith(color: colors.onSurface)),
+                    Text(
+                      'Ver todos',
+                      style: texts.bodySmall?.copyWith(color: colors.onSurface),
+                    ),
                     const SizedBox(width: 4),
                     const Icon(Icons.arrow_forward, size: 16),
                   ],
@@ -98,7 +103,13 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          const StatementTable(showAll: false),
+          DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              color: colors.surfaceContainer,
+            ),
+            child: const StatementTable(showAll: false),
+          ),
         ],
       ),
     );

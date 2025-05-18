@@ -11,9 +11,15 @@ class StatementView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final texts = Theme.of(context).textTheme;
+    final colors = Theme.of(context).colorScheme;
 
-    return Padding(
+    return Container(
+      margin: const EdgeInsets.all(16),
       padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: colors.surfaceContainer,
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: Column(
         spacing: 8,
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -54,6 +54,15 @@ extension AppRouter on GoRouter {
         /// como barra de navegação ou menu lateral. Ficarão sempre visíveis.
         builder: (context, __, child) {
           context.provide(UserViewModel.new);
+          final user = readIt<UserViewModel>().user;
+          context.provide(
+            AccountViewModel.new,
+            parameters: {
+              'bank': user.bankNumber,
+              'agency': user.agencyNumber,
+              'account': user.accountNumber,
+            },
+          );
 
           return UserShell(child: child);
         },
@@ -61,19 +70,7 @@ extension AppRouter on GoRouter {
           GoRoute(
             path: '/home',
             name: HomePage.name,
-            builder: (context, __) {
-              final user = readIt<UserViewModel>().user;
-              context.provide(
-                AccountViewModel.new,
-                parameters: {
-                  'bank': user.bankNumber,
-                  'agency': user.agencyNumber,
-                  'account': user.accountNumber,
-                },
-              );
-
-              return const HomePage();
-            },
+            builder: (_, __) => const HomePage(),
           ),
           GoRoute(
             path: '/transaction',

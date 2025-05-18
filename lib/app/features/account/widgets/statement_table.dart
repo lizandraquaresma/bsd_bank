@@ -30,7 +30,7 @@ class _StatementTableState extends State<StatementTable> {
   }
 
   List<TransactionModel> _getSortedTransactions() {
-    final statement = context.read<AccountViewModel>().statement;
+    final statement = context.watch<AccountViewModel>().statement;
     final transactions = widget.showAll
         ? statement.transactions
         : statement.transactions.take(5).toList();
@@ -132,10 +132,12 @@ class _StatementTableState extends State<StatementTable> {
             color: WidgetStateProperty.resolveWith<Color?>(
               (Set<WidgetState> states) {
                 if (states.contains(WidgetState.selected)) {
-                  return colors.primaryContainer;
+                  return colors.surface;
                 }
 
-                return index.isOdd ? colors.surfaceContainer : null;
+                return index.isOdd
+                    ? colors.surfaceContainerHigh
+                    : colors.surfaceContainer;
               },
             ),
             cells: [

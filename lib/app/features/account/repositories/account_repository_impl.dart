@@ -21,7 +21,7 @@ class AccountRepositoryImpl extends AccountRepository {
   }
 
   @override
-  Future<List<StatementModel>> getStatement({
+  Future<StatementModel> getStatement({
     required int bank,
     required int agency,
     required String account,

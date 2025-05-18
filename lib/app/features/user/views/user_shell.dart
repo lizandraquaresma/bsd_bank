@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provide_it/provide_it.dart';
 
-import '../../account/views/transaction_view.dart';
+import '../../account/views/statement_view.dart';
 import '../view_models/user_view_model.dart';
 import 'home_page.dart';
 
@@ -70,7 +70,7 @@ class _UserShellState extends State<UserShell> {
             HomePage.go(context);
           }
           if (index == 1) {
-            TransactionView.go(context);
+            StatementView.go(context);
           }
           if (index == 2) {
             // WalletPage.go(context);

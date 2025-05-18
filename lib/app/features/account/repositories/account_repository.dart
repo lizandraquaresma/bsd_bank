@@ -18,7 +18,7 @@ abstract class AccountRepository {
   });
 
   // O método [getStatement] carrega o extrato da conta.
-  Future<List<StatementModel>> getStatement({
+  Future<StatementModel> getStatement({
     required int bank,
     required int agency,
     required String account,

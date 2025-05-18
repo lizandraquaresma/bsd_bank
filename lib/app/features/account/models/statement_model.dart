@@ -2,77 +2,87 @@
 // ignore_for_file: type=lint
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
+import 'transaction_model.dart';
+
+
 class StatementModel {
-  final String id;
   final int agencyNumber;
   final String accountNumber;
   final String cpf;
   final String name;
-  final double amount;
-  final DateTime date;
+  final double balance;
+  final double currentBalance;
+  final List<TransactionModel> transactions;
+  final String correlationId;
   const StatementModel({
-    this.id = '',
     this.agencyNumber = 0,
     this.accountNumber = '',
     this.cpf = '',
     this.name = '',
-    this.amount = 0.0,
-    required this.date,
+    this.balance = 0.0,
+    this.currentBalance = 0.0,
+    this.transactions = const [],
+    this.correlationId = '',
   });
 
   StatementModel copyWith({
-    String? id,
     int? agencyNumber,
     String? accountNumber,
     String? cpf,
     String? name,
-    double? amount,
-    DateTime? date,
+    double? balance,
+    double? currentBalance,
+    List<TransactionModel>? transactions,
+    String? correlationId,
   }) {
     return StatementModel(
-      id: id ?? this.id,
       agencyNumber: agencyNumber ?? this.agencyNumber,
       accountNumber: accountNumber ?? this.accountNumber,
       cpf: cpf ?? this.cpf,
       name: name ?? this.name,
-      amount: amount ?? this.amount,
-      date: date ?? this.date,
+      balance: balance ?? this.balance,
+      currentBalance: currentBalance ?? this.currentBalance,
+      transactions: transactions ?? this.transactions,
+      correlationId: correlationId ?? this.correlationId,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
       'agencyNumber': agencyNumber,
       'accountNumber': accountNumber,
       'cpf': cpf,
       'name': name,
-      'amount': amount,
-      'date': date.toUtc().toIso8601String(),
+      'balance': balance,
+      'currentBalance': currentBalance,
+      'transactions': transactions.map((x) => x.toMap()).toList(),
+      'correlationId': correlationId,
     };
   }
 
   factory StatementModel.fromMap(Map<String, dynamic> map) {
      T cast<T>(String k) => map[k] is T ? map[k] as T : throw ArgumentError.value(map[k], k, '$T ← ${map[k].runtimeType}');
     return StatementModel(
-      id: cast<String>('id'),
       agencyNumber: cast<num>('agencyNumber').toInt(),
       accountNumber: cast<String>('accountNumber'),
       cpf: cast<String>('cpf'),
       name: cast<String>('name'),
-      amount: cast<num>('amount').toDouble(),
-      date: DateTime.parse(cast<String>('date')),
+      balance: cast<num>('balance').toDouble(),
+      currentBalance: cast<num>('currentBalance').toDouble(),
+      transactions: List<TransactionModel>.from(cast<Iterable>('transactions').map((x) => TransactionModel.fromMap(Map.from(x as Map)))),
+      correlationId: cast<String>('correlationId'),
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory StatementModel.fromJson(String source) =>
-      StatementModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory StatementModel.fromJson(String source) => StatementModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'StatementModel(id: $id, agencyNumber: $agencyNumber, accountNumber: $accountNumber, cpf: $cpf, name: $name, amount: $amount, date: $date)';
+    return 'StatementModel(agencyNumber: $agencyNumber, accountNumber: $accountNumber, cpf: $cpf, name: $name, balance: $balance, currentBalance: $currentBalance, transactions: $transactions, correlationId: $correlationId)';
   }
 
   @override
@@ -80,23 +90,25 @@ class StatementModel {
     if (identical(this, other)) return true;
   
     return other is StatementModel &&
-      other.id == id &&
       other.agencyNumber == agencyNumber &&
       other.accountNumber == accountNumber &&
       other.cpf == cpf &&
       other.name == name &&
-      other.amount == amount &&
-      other.date == date;
+      other.balance == balance &&
+      other.currentBalance == currentBalance &&
+      listEquals(other.transactions, transactions) &&
+      other.correlationId == correlationId;
   }
 
   @override
   int get hashCode {
-    return id.hashCode ^
-      agencyNumber.hashCode ^
+    return agencyNumber.hashCode ^
       accountNumber.hashCode ^
       cpf.hashCode ^
       name.hashCode ^
-      amount.hashCode ^
-      date.hashCode;
+      balance.hashCode ^
+      currentBalance.hashCode ^
+      transactions.hashCode ^
+      correlationId.hashCode;
   }
 }

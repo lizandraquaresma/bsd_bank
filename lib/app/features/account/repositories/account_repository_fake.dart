@@ -1,3 +1,4 @@
+import '../mocks/statement_mock.dart';
 import '../models/authenticate_model.dart';
 import '../models/balance_model.dart';
 import '../models/statement_model.dart';
@@ -35,27 +36,12 @@ class AccountRepositoryFake extends AccountRepository {
   }
 
   @override
-  Future<List<StatementModel>> getStatement({
+  Future<StatementModel> getStatement({
     required int bank,
     required int agency,
     required String account,
   }) async {
-    return [
-      StatementModel(
-        id: '1',
-        accountNumber: '456',
-        agencyNumber: 1,
-        amount: 100.0,
-        date: DateTime.now(),
-      ),
-      StatementModel(
-        id: '2',
-        accountNumber: '456',
-        agencyNumber: 1,
-        amount: 200.0,
-        date: DateTime.now(),
-      ),
-    ];
+    return statementMock;
   }
 
   @override

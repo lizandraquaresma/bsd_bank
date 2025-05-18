@@ -4,9 +4,9 @@ import 'package:provide_it/provide_it.dart';
 
 import '../../account/view_models/account_view_model.dart';
 import '../../account/widgets/balance_widget.dart';
-import '../../account/widgets/transaction_container.dart';
-import '../../account/widgets/transactions_table.dart';
-import '../../account/views/transaction_view.dart';
+import '../../account/widgets/statement_container.dart';
+import '../../account/widgets/statement_table.dart';
+import '../../account/views/statement_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -17,23 +17,24 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+    final texts = Theme.of(context).textTheme;
     final balance = context.watch<AccountViewModel>().balance;
     final optionn = [
-      TransactionContainer(
+      StatementContainer(
         onTap: () {
           print('enviar pix');
         },
         title: 'Enviar pix',
         icon: Icons.pix_rounded,
       ),
-      TransactionContainer(
+      StatementContainer(
         onTap: () {
           print('receber pix');
         },
         title: 'Receber pix',
         icon: Icons.pix,
       ),
-      TransactionContainer(
+      StatementContainer(
         onTap: () {
           print('transferir');
         },
@@ -42,43 +43,63 @@ class HomePage extends StatelessWidget {
       ),
     ];
 
-    return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          spacing: 16,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: colors.surfaceContainer,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                spacing: 8,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('Saldo:'),
-                  AccountBalanceWidget(balance: balance),
-                ],
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        spacing: 16,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: colors.surfaceContainer,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Column(
+              spacing: 8,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('Saldo:'),
+                AccountBalanceWidget(balance: balance),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 120,
+            child: ListView.builder(
+              itemCount: optionn.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (_, index) => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: optionn[index],
               ),
             ),
-            SizedBox(
-              height: 120,
-              child: ListView.builder(
-                itemCount: optionn.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (_, index) => Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: optionn[index],
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Ultimas transações',
+                  style:
+                      texts.titleMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
               ),
-            ),
-            TransactionsTable(
-              onViewAllPressed: TransactionView.go,
-            ),
-          ],
-        ),
+              TextButton(
+                onPressed: () => StatementView.go(context),
+                style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                child: Row(
+                  children: [
+                    Text('Ver todos',
+                        style:
+                            texts.bodySmall?.copyWith(color: colors.onSurface)),
+                    const SizedBox(width: 4),
+                    const Icon(Icons.arrow_forward, size: 16),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const StatementTable(showAll: false),
+        ],
       ),
     );
   }

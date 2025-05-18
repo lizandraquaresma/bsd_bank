@@ -4,7 +4,7 @@ import 'package:provide_it/provide_it.dart';
 
 import 'app_analytics.dart';
 import 'features/account/view_models/account_view_model.dart';
-import 'features/account/views/transaction_view.dart';
+import 'features/account/views/statement_view.dart';
 import 'features/auth/view_models/auth_store.dart';
 import 'features/auth/views/forgot_password_page.dart';
 import 'features/auth/views/initial_page.dart';
@@ -77,8 +77,8 @@ extension AppRouter on GoRouter {
           ),
           GoRoute(
             path: '/transaction',
-            name: TransactionView.name,
-            builder: (_, __) => const TransactionView(),
+            name: StatementView.name,
+            builder: (_, __) => const StatementView(),
           ),
         ],
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TransactionContainer extends StatelessWidget {
-  const TransactionContainer({
+class StatementContainer extends StatelessWidget {
+  const StatementContainer({
     super.key,
     required this.onTap,
     required this.title,

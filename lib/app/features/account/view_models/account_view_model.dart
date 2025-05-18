@@ -26,14 +26,12 @@ class AccountViewModel extends ChangeNotifier {
   final String account;
 
   BalanceModel? _balance;
+  StatementModel? _statement;
 
-  List<StatementModel> _statement = [];
-  List<StatementModel> get statement => _statement;
-  BalanceModel get balance =>
-      _balance ?? BalanceModel(lastUpdate: DateTime(1900));
+  StatementModel get statement => _statement ?? const StatementModel();
+  BalanceModel get balance => _balance ?? BalanceModel(lastUpdate: DateTime(1900));
 
   Future<void> fetchBalance() async {
-    print('Fetching balance...');
     _balance = await _accountRepository.getBalance(
       bank: bank,
       agency: agency,

@@ -1,4 +1,3 @@
-
 import '../models/authenticate_model.dart';
 import '../models/balance_model.dart';
 import '../models/statement_model.dart';
@@ -11,7 +10,7 @@ abstract class AccountRepository {
     required String account,
   });
 
-  Future<List<BalanceModel>> getBalancesHistory({
+  Future<List<BalanceModel>> getBalanceHistory({
     required int bank,
     required int agency,
     required String account,

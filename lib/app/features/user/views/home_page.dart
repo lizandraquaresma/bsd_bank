@@ -19,22 +19,29 @@ class HomePage extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
     final texts = Theme.of(context).textTheme;
     final balance = context.watch<AccountViewModel>().balance;
-    final optionn = [
-      StatementContainer(
+    final pixOptions = [
+      TransactionOptionButton(
         onTap: () {
           print('enviar pix');
         },
         title: 'Enviar pix',
         icon: Icons.pix_rounded,
       ),
-      StatementContainer(
+      TransactionOptionButton(
         onTap: () {
           print('receber pix');
         },
         title: 'Receber pix',
         icon: Icons.pix,
       ),
-      StatementContainer(
+      TransactionOptionButton(
+        onTap: () {
+          print('Minhas chaves');
+        },
+        title: 'Minhas chaves',
+        icon: Icons.key,
+      ),
+      TransactionOptionButton(
         onTap: () {
           print('transferir');
         },
@@ -70,11 +77,11 @@ class HomePage extends StatelessWidget {
           SizedBox(
             height: 120,
             child: ListView.builder(
-              itemCount: optionn.length,
+              itemCount: pixOptions.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (_, index) => Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: optionn[index],
+                child: pixOptions[index],
               ),
             ),
           ),

@@ -12,12 +12,9 @@ class AccountViewModel extends ChangeNotifier {
     required this.agency,
     required this.account,
   }) {
-    print('AccountViewModel initialized with:');
-    print('bank: $bank');
-    print('agency: $agency');
-    print('account: $account');
     fetchBalance();
     fetchStatement();
+    fetchBalanceHistory();
   }
 
   final AccountRepository _accountRepository;
@@ -27,9 +24,12 @@ class AccountViewModel extends ChangeNotifier {
 
   BalanceModel? _balance;
   StatementModel? _statement;
+  List<BalanceModel> _balanceHistory = [];
 
   StatementModel get statement => _statement ?? const StatementModel();
-  BalanceModel get balance => _balance ?? BalanceModel(lastUpdate: DateTime(1900));
+  BalanceModel get balance =>
+      _balance ?? BalanceModel(lastUpdate: DateTime(1900));
+  List<BalanceModel> get balanceHistory => _balanceHistory;
 
   Future<void> fetchBalance() async {
     _balance = await _accountRepository.getBalance(
@@ -43,6 +43,15 @@ class AccountViewModel extends ChangeNotifier {
 
   Future<void> fetchStatement() async {
     _statement = await _accountRepository.getStatement(
+      bank: bank,
+      agency: agency,
+      account: account,
+    );
+    notifyListeners();
+  }
+
+  Future<void> fetchBalanceHistory() async {
+    _balanceHistory = await _accountRepository.getBalanceHistory(
       bank: bank,
       agency: agency,
       account: account,

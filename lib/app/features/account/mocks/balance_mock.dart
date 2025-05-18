@@ -1,6 +1,6 @@
 import '../models/balance_model.dart';
 
-List<BalanceModel> accountBalanceMock = [
+List<BalanceModel> balanceHistoryMock = [
   BalanceModel(
     agencyNumber: 1,
     accountNumber: '123',

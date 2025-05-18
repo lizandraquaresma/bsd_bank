@@ -29,9 +29,10 @@ class AccountRepositoryImpl extends AccountRepository {
     // TODO: implement getStatement
     throw UnimplementedError();
   }
-  
+
   @override
-  Future<List<BalanceModel>> getBalancesHistory({required int bank, required int agency, required String account}) {
+  Future<List<BalanceModel>> getBalanceHistory(
+      {required int bank, required int agency, required String account}) {
     // TODO: implement getBalancesHistory
     throw UnimplementedError();
   }

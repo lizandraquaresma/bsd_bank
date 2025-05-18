@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class StatementContainer extends StatelessWidget {
-  const StatementContainer({
+class TransactionOptionButton extends StatelessWidget {
+  const TransactionOptionButton({
     super.key,
     required this.onTap,
     required this.title,

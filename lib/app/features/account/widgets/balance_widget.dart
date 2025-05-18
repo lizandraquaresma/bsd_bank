@@ -1,8 +1,10 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:provide_it/provide_it.dart';
 
 import '../mocks/balance_mock.dart';
 import '../models/balance_model.dart';
+import '../view_models/account_view_model.dart';
 
 class AccountBalanceWidget extends StatefulWidget {
   const AccountBalanceWidget({
@@ -28,6 +30,7 @@ class _AccountBalanceWidgetState extends State<AccountBalanceWidget> {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
+    final balanceHistory = context.watch<AccountViewModel>().balanceHistory;
 
     return Column(
       children: [
@@ -86,10 +89,10 @@ class _AccountBalanceWidgetState extends State<AccountBalanceWidget> {
                     reservedSize: 30,
                     interval: 1,
                     getTitlesWidget: (value, _) {
-                      if (value.toInt() >= accountBalanceMock.length)
+                      if (value.toInt() >= balanceHistory.length)
                         // ignore: curly_braces_in_flow_control_structures
                         return const Text('');
-                      final date = accountBalanceMock[value.toInt()].lastUpdate;
+                      final date = balanceHistory[value.toInt()].lastUpdate;
 
                       return Padding(
                         padding: const EdgeInsets.only(top: 8.0),
@@ -116,15 +119,15 @@ class _AccountBalanceWidgetState extends State<AccountBalanceWidget> {
                 ),
               ),
               minX: 0,
-              maxX: accountBalanceMock.length - 1.0,
+              maxX: balanceHistory.length - 1.0,
               minY: 0,
-              maxY: accountBalanceMock
+              maxY: balanceHistory
                       .map((e) => e.balance)
                       .reduce((a, b) => a > b ? a : b) +
                   100,
               lineBarsData: [
                 LineChartBarData(
-                  spots: accountBalanceMock.asMap().entries.map((entry) {
+                  spots: balanceHistory.asMap().entries.map((entry) {
                     return FlSpot(
                       entry.key.toDouble(),
                       entry.value.balance,

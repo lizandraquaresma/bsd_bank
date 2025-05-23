@@ -17,8 +17,8 @@ abstract class AuthRepository {
   /// O método [register] realiza o cadastro do usuário.
   Future<void> register(RegisterDto dto);
 
-  // Ao realizar o logout, o token e o usuário são removidos do cache.
+  /// Ao realizar o logout, o token e o usuário são removidos do cache.
   Future<void> logout();
 }
 
-final tokenRef = ProvideRef((String userId) => 'token');
+final ProvideRef tokenRef = ProvideRef((String userId) => 'token');

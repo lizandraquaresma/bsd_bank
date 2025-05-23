@@ -61,7 +61,7 @@ class RegisterForm extends StatelessWidget {
             },
           ),
           TextButton(
-            onPressed: () => LoginPage.go(context),
+            onPressed: () => LoginView.go(context),
             child: const Text('Já tem uma conta? Faça login'),
           ),
         ],

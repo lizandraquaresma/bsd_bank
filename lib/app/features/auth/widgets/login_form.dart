@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:formx/formx.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../models/login_dto.dart';
 import '../views/forgot_password_page.dart';
@@ -15,6 +16,11 @@ class LoginForm extends StatelessWidget {
     final texts = Theme.of(context).textTheme;
     const key = 'login_form';
 
+    final cpfMask = MaskTextInputFormatter(
+      mask: '###.###.###-##',
+      filter: {'#': RegExp('[0-9]')},
+    );
+
     return Form(
       key: const Key(key),
       child: Column(
@@ -28,9 +34,12 @@ class LoginForm extends StatelessWidget {
             ),
           ),
           TextFormField(
-            key: const Key('cpf'),
+            key: const Key('cpf').options(
+              keepMask: false,
+            ),
             validator: Validator().required().cpf(),
             keyboardType: TextInputType.number,
+            inputFormatters: [cpfMask],
             decoration: const InputDecoration(
               labelText: 'CPF',
               suffixIcon: Icon(Icons.person),
@@ -47,7 +56,7 @@ class LoginForm extends StatelessWidget {
           LoginButton(
             getDto: () {
               final map = context.submit(key: key);
-      
+
               return LoginDto.fromMap(map);
             },
           ),

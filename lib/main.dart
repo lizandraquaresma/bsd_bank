@@ -15,6 +15,10 @@ import 'app/features/auth/view_models/auth_store.dart';
 import 'app/features/user/repositories/user_repository.dart';
 import 'app/features/user/repositories/user_repository_fake.dart';
 import 'app/features/user/repositories/user_repository_impl.dart';
+import 'app/features/wallet/repositories/wallet_repository.dart';
+import 'app/features/wallet/repositories/wallet_repository_fake.dart';
+import 'app/features/wallet/repositories/wallet_repository_impl.dart';
+import 'app/features/wallet/view_models/wallet_view_model.dart';
 import 'app/services/api/dio_service.dart';
 import 'app/services/cache/cache_service.dart';
 import 'app/services/cache/cache_service_fake.dart';
@@ -49,6 +53,7 @@ extension on BuildContext {
     provide<AuthRepository>(AuthRepositoryFake.new);
     provide<UserRepository>(UserRepositoryFake.new);
     provide<AccountRepository>(AccountRepositoryFake.new);
+    provide<WalletRepository>(WalletRepositoryFake.new);
     provideStores();
   }
 
@@ -61,10 +66,12 @@ extension on BuildContext {
     provide<AuthRepository>(AuthRepositoryImpl.new);
     provide<UserRepository>(UserRepositoryImpl.new);
     provide<AccountRepository>(AccountRepositoryImpl.new);
+    provide<WalletRepository>(WalletRepositoryImpl.new);
     provideStores();
   }
 
   void provideStores() {
     provide(AuthStore.new);
+     provide(WalletViewModel.new); 
   }
 }

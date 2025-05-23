@@ -1,11 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provide_it/provide_it.dart';
 
 import '../../account/views/statement_view.dart';
-import '../view_models/user_view_model.dart';
-import 'home_page.dart';
+import 'home_view.dart';
+import 'wallet_view.dart';
 
 class UserShell extends StatefulWidget {
   const UserShell({super.key, required this.child});
@@ -16,54 +14,13 @@ class UserShell extends StatefulWidget {
 }
 
 class _UserShellState extends State<UserShell> {
-  int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
-    final user = context.watch<UserViewModel>().user;
     final texts = Theme.of(context).textTheme;
     final colors = Theme.of(context).colorScheme;
-    final route = GoRouter.of(context);
+    final selectedIndex = GoRouterState.of(context).currentIndex;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: colors.surface,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.notifications_rounded),
-        ),
-        actions: [
-          InkWell(
-            onTap: () {
-              if (kDebugMode) {
-                print('profile');
-              }
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                spacing: 8,
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    user.name,
-                    style: texts.titleMedium
-                        ?.copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  CircleAvatar(
-                    radius: 24,
-                    child: Image.network(
-                      'https://cdn-icons-png.flaticon.com/512/149/149071.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
       body: widget.child,
       bottomNavigationBar: NavigationBar(
         indicatorColor: Colors.transparent,
@@ -72,19 +29,16 @@ class _UserShellState extends State<UserShell> {
             color: colors.primary,
           ),
         ),
-        selectedIndex: _selectedIndex,
+        selectedIndex: selectedIndex,
         onDestinationSelected: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
           if (index == 0) {
-            HomePage.go(context);
+            HomeView.go(context);
           }
           if (index == 1) {
             StatementView.go(context);
           }
           if (index == 2) {
-            // WalletPage.go(context);
+            WalletView.go(context);
           }
         },
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
@@ -107,5 +61,24 @@ class _UserShellState extends State<UserShell> {
         ],
       ),
     );
+  }
+}
+
+extension on GoRouterState {
+  int get currentIndex {
+    if (uri.path.startsWith('/home')) {
+      return 0;
+    }
+    if (uri.path.startsWith('/statement')) {
+      return 1;
+    }
+    if (uri.path.startsWith('/wallet')) {
+      return 2;
+    }
+    if (uri.path.startsWith('/profile')) {
+      return 0;
+    }
+
+    return 0;
   }
 }

@@ -2,16 +2,17 @@
 // ignore_for_file: type=lint
 import 'dart:convert';
 
-
 class TransactionModel {
   final String id;
   final String type;
+  final String name;
   final double value;
   final String? description;
   final DateTime createdAt;
   const TransactionModel({
     this.id = '',
     this.type = '',
+    this.name = '',
     this.value = 0.0,
     this.description,
     required this.createdAt,
@@ -20,6 +21,7 @@ class TransactionModel {
   TransactionModel copyWith({
     String? id,
     String? type,
+    String? name,
     double? value,
     String? description,
     DateTime? createdAt,
@@ -27,6 +29,7 @@ class TransactionModel {
     return TransactionModel(
       id: id ?? this.id,
       type: type ?? this.type,
+      name: name ?? this.name,
       value: value ?? this.value,
       description: description ?? this.description,
       createdAt: createdAt ?? this.createdAt,
@@ -37,6 +40,7 @@ class TransactionModel {
     return {
       'id': id,
       'type': type,
+      'name': name,
       'value': value,
       'description': description,
       'createdAt': createdAt.toUtc().toIso8601String(),
@@ -48,8 +52,9 @@ class TransactionModel {
     return TransactionModel(
       id: cast<String>('id'),
       type: cast<String>('type'),
+      name: cast<String>('name'),
       value: cast<num>('value').toDouble(),
-      description: cast<String>('description'),
+      description: cast<String?>('description'),
       createdAt: DateTime.parse(cast<String>('createdAt')),
     );
   }
@@ -60,7 +65,7 @@ class TransactionModel {
 
   @override
   String toString() {
-    return 'TransactionModel(id: $id, type: $type, value: $value, description: $description, createdAt: $createdAt)';
+    return 'TransactionModel(id: $id, type: $type, name: $name, value: $value, description: $description, createdAt: $createdAt)';
   }
 
   @override
@@ -70,6 +75,7 @@ class TransactionModel {
     return other is TransactionModel &&
       other.id == id &&
       other.type == type &&
+      other.name == name &&
       other.value == value &&
       other.description == description &&
       other.createdAt == createdAt;
@@ -79,6 +85,7 @@ class TransactionModel {
   int get hashCode {
     return id.hashCode ^
       type.hashCode ^
+      name.hashCode ^
       value.hashCode ^
       description.hashCode ^
       createdAt.hashCode;

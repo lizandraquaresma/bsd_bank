@@ -20,7 +20,7 @@ class StatementTable extends StatefulWidget {
 
 class _StatementTableState extends State<StatementTable> {
   int? _sortColumnIndex;
-  bool _sortAscending = true;
+  var _sortAscending = true;
 
   void _onSort(int columnIndex, bool ascending) {
     setState(() {
@@ -125,7 +125,7 @@ class _StatementTableState extends State<StatementTable> {
           final transaction = entry.value;
           final isPositive = transaction.type == 'CREDIT';
           final value = transaction.value;
-          final name = transaction.description ?? transaction.type;
+          final name = transaction.name;
           final date = transaction.createdAt;
 
           return DataRow(

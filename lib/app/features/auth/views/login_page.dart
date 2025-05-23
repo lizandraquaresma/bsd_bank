@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 
 import '../widgets/login_form.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
   static const name = 'login';
   static void go(BuildContext context) => context.goNamed(name);
 

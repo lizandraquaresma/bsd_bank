@@ -11,8 +11,10 @@ import 'features/auth/views/initial_page.dart';
 import 'features/auth/views/login_page.dart';
 import 'features/auth/views/register_page.dart';
 import 'features/user/view_models/user_view_model.dart';
-import 'features/user/views/home_page.dart';
+import 'features/user/views/home_view.dart';
+import 'features/user/views/profile_view.dart';
 import 'features/user/views/user_shell.dart';
+import 'features/user/views/wallet_view.dart';
 
 extension AppRouter on GoRouter {
   static final config = GoRouter(
@@ -32,8 +34,8 @@ extension AppRouter on GoRouter {
         routes: [
           GoRoute(
             path: 'login',
-            name: LoginPage.name,
-            builder: (_, __) => const LoginPage(),
+            name: LoginView.name,
+            builder: (_, __) => const LoginView(),
             routes: [
               GoRoute(
                 path: 'forgot-password',
@@ -69,13 +71,23 @@ extension AppRouter on GoRouter {
         routes: [
           GoRoute(
             path: '/home',
-            name: HomePage.name,
-            builder: (_, __) => const HomePage(),
+            name: HomeView.name,
+            builder: (_, __) => const HomeView(),
           ),
           GoRoute(
-            path: '/transaction',
+            path: '/statement',
             name: StatementView.name,
             builder: (_, __) => const StatementView(),
+          ),
+          GoRoute(
+            path: '/profile',
+            name: ProfileView.name,
+            builder: (_, __) => const ProfileView(),
+          ),
+          GoRoute(
+            path: '/wallet',
+            name: WalletView.name,
+            builder: (_, __) => const WalletView(),
           ),
         ],
       ),
@@ -90,7 +102,7 @@ extension AppRouter on GoRouter {
   void addAnalytics() {
     routerDelegate.addListener(() {
       AppAnalytics.logScreen(
-        name: current.last.route.name,
+        name: current.lastOrNull?.route.name,
         path: current.fullPath,
         parameters: current.pathParameters,
       );

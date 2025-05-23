@@ -14,8 +14,6 @@ class AuthStore extends ChangeNotifier {
 
   /// Checa se o usuário está logado e seta o estado global do usuário.
   Future<bool> check() async {
-    await _repository.check();
-
     return isLogged;
   }
 

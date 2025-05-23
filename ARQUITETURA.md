@@ -1,5 +1,7 @@
 # Arquitetura
 
+
+## MVVM
 ## Feature-driven ✨
 
 ```md
@@ -9,7 +11,7 @@
       - /feature
         - /models (data models)
         - /repositories (data management)
-        - /stores (state management)
+        - /view_models (state management)
         - /views (pages, dialogs, bottom sheets)
         - /widgets (business logic components)
     - /services
@@ -41,13 +43,13 @@ O aplicativo é dividido em camadas, onde cada uma tem uma responsabilidade espe
 
 - **Service**: Abstração de uma fonte de dados. Ex: `CacheService`, `DioService`.
 - **Repository**: Gerenciamento da fonte de dados. Ex: `UserRepository`, `ProductRepository`.
-- **Store**: Gerenciamento do estado da aplicação. Ex: `UserStore`, `ProductStore`.
-- **View**: Interface com o usuário. Ex: `UserPage`, `ProductPage`.
+- **View Model**: Gerenciamento do estado da aplicação. Ex: `UserViewModel`, `ProductViewModel`.
+- **View**: Interface com o usuário. Ex: `UserView`, `ProductView`.
 
-Uma camada não pode acessar outra camada do mesmo nível diretamente. Ex: `Store` não pode acessar outra `Store`. Sempre
+Uma camada não pode acessar outra camada do mesmo nível diretamente. Ex: `ViewModel` não pode acessar outra `ViewModel`. Sempre
 que uma camada precisar de outra, você poderá usar a camada abaixo ou a de cima. 
 
-Por exemplo, você pode salvar os dados do usuário no `UserRepository` e acessá-los em multiplas stores diferentes, ou você pode acessar o `UserStore` em multiplas views diferentes. Fazendo isso, você mantém a responsabilidade de cada camada e evita dependências cíclicas.
+Por exemplo, você pode salvar os dados do usuário no `UserRepository` e acessá-los em multiplas stores diferentes, ou você pode acessar o `UserViewModel` em multiplas views diferentes. Fazendo isso, você mantém a responsabilidade de cada camada e evita dependências cíclicas.
 
 ## Model
 
@@ -62,10 +64,6 @@ class User {
   User.fromMap(...); // serialização
 }
 ```
-
-Use a extensão desenvolvida pela Branvier para facilitar a serialização de objetos.
-
-### Instale aqui: [Dart Safe Data Class](https://marketplace.visualstudio.com/items?itemName=ArthurMiranda.dart-safe-data-class)
 
 ---
 
@@ -97,7 +95,7 @@ i.commit();
 
 O Repository é responsável por gerenciar a fonte de dados, tratá-la e fornecê-la para o resto da aplicação de uma forma mais amigável.
 
-Cada repository é responsável por uma entidade específica, um Model. É interessante ter uma pasta para cada entidade dentro de `/feature` onde ficarão os arquivos `model`, `repository`, `store`, `view`, `widget` daquela entidade. Ex: `BookModel`, `BookRepository`, `BookStore`, `BookPage`, `BookButton`, `BookCard`, `BookList`, etc.
+Cada repository é responsável por uma entidade específica, um Model. É interessante ter uma pasta para cada entidade dentro de `/feature` onde ficarão os arquivos `model`, `repository`, `view_model`, `view`, `widget` daquela entidade. Ex: `BookModel`, `BookRepository`, `BookSVieModel`, `BookView`, `BookButton`, `BookCard`, `BookList`, etc.
 
 ```dart
 // Uma DTO (Data Transfer Object) é um objeto que contém os dados necessários para uma operação específica. Por exemplo, um 
@@ -134,15 +132,15 @@ class AuthRepository {
 }
 ```
 
-## Store
+## View Model
 
-A Store é responsável por gerenciar o estado da aplicação. Ela é a única camada que pode alterar o estado da aplicação.
+A View Model é responsável por gerenciar o estado da aplicação. Ela é a única camada que pode alterar o estado da aplicação.
 
-A Store depende do Repository para acessar os dados e de extender o `ChangeNotifier` para notificar os widgets que o estado foi alterado.
+A View Model depende do Repository para acessar os dados e de extender o `ChangeNotifier` para notificar os widgets que o estado foi alterado.
 
 ```dart
-class BookStore extends ChangeNotifier {
-  BookStore(this.repository) {
+class BookViewModel extends ChangeNotifier {
+  BookViewModel(this.repository) {
     // Todo construtor pode ter um método para inicializar algo junto com ele.
     // Aqui, chamamos getBooks() para carregar os livros junto com a inicialização do BookStore.
     getBooks();
@@ -202,8 +200,8 @@ Widget build(BuildContext context) {
   // 
   // você sempre usa o .watch quando for ler um estado, mas se apenas for 
   // apenas chamar um método da stora, use o .read.
-  final books = context.watch<BookStore>().books;
-  final isLoading = context.watch<BookStore>().isLoading;
+  final books = context.watch<BookViewModel>().books;
+  final isLoading = context.watch<BookViewModel>().isLoading;
 
   if (isLoading) {
     return Center(child: CircularProgressIndicator());
@@ -219,13 +217,13 @@ Widget build(BuildContext context) {
 }
 ```
 
-## Page
+## View
 
-As páginas são responsáveis por exibir a interface do usuário. Elas são o widget mais alto na árvore de widgets de uma rota. Aproveitamos para adicionar as suas configurações de rota aqui também, como seu nome e a função dizendo como navegar até ela.
+As views são responsáveis por exibir a interface do usuário. Elas são o widget mais alto na árvore de widgets de uma rota. Aproveitamos para adicionar as suas configurações de rota aqui também, como seu nome e a função dizendo como navegar até ela.
 
 ```dart
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
 
   static const name = 'login';
   static void go(BuildContext context) => context.goNamed(name);

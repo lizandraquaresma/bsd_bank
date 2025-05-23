@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:flutter/material.dart';
 import 'package:flutter_async/flutter_async.dart';
 import 'package:provide_it/provide_it.dart';

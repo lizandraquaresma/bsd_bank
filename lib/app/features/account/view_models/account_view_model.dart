@@ -37,7 +37,9 @@ class AccountViewModel extends ChangeNotifier {
       agency: agency,
       account: account,
     );
-    print('Balance fetched: ${_balance?.balance}');
+    if (kDebugMode) {
+      print('Balance fetched: ${_balance?.balance}');
+    }
     notifyListeners();
   }
 

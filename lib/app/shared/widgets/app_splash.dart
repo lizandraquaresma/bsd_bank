@@ -4,7 +4,7 @@ class AppSplash extends StatelessWidget {
   const AppSplash({super.key});
 
   /// The splash duration to wait. Called once.
-  static final future = Future.delayed(const Duration(seconds: 3));
+  static final Future future = Future.delayed(const Duration(seconds: 3));
 
   @override
   Widget build(BuildContext context) {

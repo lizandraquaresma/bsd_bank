@@ -11,7 +11,7 @@ class PasswordField extends StatefulWidget {
 }
 
 class _PasswordFieldState extends State<PasswordField> {
-  bool isObscured = true;
+  var isObscured = true;
   void toggleObscureText() {
     setState(() {
       isObscured = !isObscured;

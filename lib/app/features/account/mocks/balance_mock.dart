@@ -25,7 +25,7 @@ List<BalanceModel> balanceHistoryMock = [
     cpf: '1234567890',
     balance: 1000,
     formattedBalance: '1000,00',
-    lastUpdate: DateTime(2002, 1),
+    lastUpdate: DateTime(2002),
     correlationId: '1234567890',
   ),
   BalanceModel(

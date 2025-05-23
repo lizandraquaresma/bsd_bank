@@ -91,7 +91,7 @@ class NetworkCacheService {
     return entry;
   }
 
-  Future<void> putEntry(NetworkCacheEntry entry) async {
+  Future<void> putEntry(NetworkCacheEntry entry) {
     final json = jsonEncode(entry.toJson());
 
     return cache.set(entry.key, json);

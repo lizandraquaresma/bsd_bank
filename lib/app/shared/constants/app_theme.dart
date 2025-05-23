@@ -35,7 +35,7 @@ extension on ColorScheme {
       ),
       inputDecorationTheme: const InputDecorationTheme(
         constraints: BoxConstraints(
-          minHeight: 50,
+          minHeight: 32,
         ),
         isDense: true,
       ),
@@ -44,7 +44,7 @@ extension on ColorScheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: primary,
           foregroundColor: onPrimary,
-          minimumSize: const Size(double.infinity, 50),
+          minimumSize: const Size(double.infinity, 40),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),

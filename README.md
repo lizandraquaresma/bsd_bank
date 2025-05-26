@@ -3,8 +3,8 @@
 Um aplicativo bancário moderno desenvolvido com Flutter, seguindo os princípios de arquitetura MVVM e Feature-driven.
 
 ## Links Úteis
-- [Jira](https://lizandraquaresmadev.atlassian.net/jira/software/projects/KAN/summary?atlOrigin=eyJpIjoiNjhmNDU1OGZlOGJiNDIzNDlkZTU3Mjk3ZjZkN2Y1N2MiLCJwIjoiaiJ9)
-- [Figma](https://link-url-here.org](https://www.figma.com/design/oqpC6KLjbH051PdTmqXOu9/BSD-BANK?node-id=1-2&t=bqZdHcjZ7mC3Hax6-1))
+- [Organização - Jira](https://lizandraquaresmadev.atlassian.net/jira/software/projects/KAN/summary?atlOrigin=eyJpIjoiNjhmNDU1OGZlOGJiNDIzNDlkZTU3Mjk3ZjZkN2Y1N2MiLCJwIjoiaiJ9)
+- [Design - Figma](https://www.figma.com/design/oqpC6KLjbH051PdTmqXOu9/BSD-BANK?node-id=0-1&t=T0b4AjbhNmG4Ew17-1)
 
 ## 🚀 Tecnologias
 

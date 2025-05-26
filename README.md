@@ -4,7 +4,7 @@ Um aplicativo bancário moderno desenvolvido com Flutter, seguindo os princípio
 
 ## Links Úteis
 - [Organização - Jira](https://lizandraquaresmadev.atlassian.net/jira/software/projects/KAN/summary?atlOrigin=eyJpIjoiNjhmNDU1OGZlOGJiNDIzNDlkZTU3Mjk3ZjZkN2Y1N2MiLCJwIjoiaiJ9)
-- [Design - Figma](https://www.figma.com/design/oqpC6KLjbH051PdTmqXOu9/BSD-BANK?node-id=0-1&t=T0b4AjbhNmG4Ew17-1)
+- [Design - Figma](https://www.figma.com/design/oqpC6KLjbH051PdTmqXOu9/BSD-BANK?node-id=1-2&t=T0b4AjbhNmG4Ew17-1)
 
 ## 🚀 Tecnologias
 

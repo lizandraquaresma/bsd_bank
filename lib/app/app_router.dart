@@ -10,6 +10,7 @@ import 'features/auth/views/forgot_password_page.dart';
 import 'features/auth/views/initial_page.dart';
 import 'features/auth/views/login_page.dart';
 import 'features/auth/views/register_page.dart';
+import 'features/pix/view_models/pix_view_model.dart';
 import 'features/user/view_models/user_view_model.dart';
 import 'features/user/views/home_view.dart';
 import 'features/user/views/profile_view.dart';
@@ -56,7 +57,10 @@ extension AppRouter on GoRouter {
         /// como barra de navegação ou menu lateral. Ficarão sempre visíveis.
         builder: (context, __, child) {
           context.provide(UserViewModel.new);
+          context.provide(PixViewModel.new);
+
           final user = readIt<UserViewModel>().user;
+
           context.provide(
             AccountViewModel.new,
             parameters: {
@@ -126,9 +130,6 @@ extension AppRouterExtension on BuildContext {
 
   /// Id do usuário logado.
   String? get userId => read<UserViewModel?>()?.user.correlationId;
-  // int? get agency => read<UserViewModel?>()?.user.agencyNumber;
-  // String? get account => read<UserViewModel?>()?.user.accountNumber;
-  // int? get bank => read<UserViewModel?>()?.user.bankNumber;
 
   String? get exampleId => route.pathParameters['exampleId'];
 }

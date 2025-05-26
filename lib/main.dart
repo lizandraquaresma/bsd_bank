@@ -12,6 +12,9 @@ import 'app/features/auth/repositories/auth_repository.dart';
 import 'app/features/auth/repositories/auth_repository_fake.dart';
 import 'app/features/auth/repositories/auth_repository_impl.dart';
 import 'app/features/auth/view_models/auth_store.dart';
+import 'app/features/pix/repositories/pix_repository.dart';
+import 'app/features/pix/repositories/pix_repository_fake.dart';
+import 'app/features/pix/repositories/pix_repository_impl.dart';
 import 'app/features/user/repositories/user_repository.dart';
 import 'app/features/user/repositories/user_repository_fake.dart';
 import 'app/features/user/repositories/user_repository_impl.dart';
@@ -33,7 +36,7 @@ void main() => run(Env.development);
 Future<void> run(Env env, [WidgetBuilder? builder]) async {
   usePathUrlStrategy();
 
-  // Inicializamos o ambiente.
+  // Inicializando o ambiente.
   Env.init(env);
 
   runApp(
@@ -54,6 +57,7 @@ extension on BuildContext {
     provide<UserRepository>(UserRepositoryFake.new);
     provide<AccountRepository>(AccountRepositoryFake.new);
     provide<WalletRepository>(WalletRepositoryFake.new);
+    provide<PixRepository>(PixRepositoryFake.new);
     provideStores();
   }
 
@@ -67,11 +71,12 @@ extension on BuildContext {
     provide<UserRepository>(UserRepositoryImpl.new);
     provide<AccountRepository>(AccountRepositoryImpl.new);
     provide<WalletRepository>(WalletRepositoryImpl.new);
+    provide<PixRepository>(PixRepositoryImpl.new);
     provideStores();
   }
 
   void provideStores() {
     provide(AuthStore.new);
-     provide(WalletViewModel.new); 
+    provide(WalletViewModel.new);
   }
 }

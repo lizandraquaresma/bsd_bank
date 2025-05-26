@@ -1,6 +1,16 @@
 import '../models/balance_model.dart';
 
-List<BalanceModel> balanceHistoryMock = [
+var balanceMock = BalanceModel(
+  agencyNumber: 1,
+  accountNumber: '123',
+  cpf: '1234567890',
+  balance: 2534.23,
+  formattedBalance: '2534,23',
+  lastUpdate: DateTime(2002, 6),
+  correlationId: '1234567890',
+);
+
+var balanceHistoryMock = [
   BalanceModel(
     agencyNumber: 1,
     accountNumber: '123',

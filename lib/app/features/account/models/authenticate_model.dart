@@ -7,6 +7,7 @@ class AuthenticateModel {
   final int agencyNumber;
   final String accountNumber;
   final String cardPassword;
+  
   const AuthenticateModel({
     this.originalTransactionId = '',
     this.agencyNumber = 0,
